@@ -9,6 +9,14 @@ import { Stock } from '@prisma/client';
 export class StockPrismaRepository implements IStockRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  async findOneByTicker(ticker: Ticker): Promise<StockEntity | null> {
+    const stock = await this.prisma.stock.findUnique({
+      where: { ticker: ticker.value },
+    });
+
+    return stock ? this.toDomain(stock) : null;
+  }
+
   async save(stock: StockEntity): Promise<StockEntity> {
     const created = await this.prisma.stock.create({
       data: {
