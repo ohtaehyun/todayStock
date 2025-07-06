@@ -24,13 +24,14 @@ model Stock {
 model TopStock {
   id Int @default(autoincrement()) @id
   stockId Int
-  startDate DateTime
-  endDate DateTime
+  tradeDate DateTime
   rank Int
   marketCap BigInt
+  startPrice Decimal
+  closePrice Decimal
   createdAt DateTime @default(now())
 
   stock Stock @relation(fields: [stockId], references: [id])
-  @@unique([stockId, startDate])
-  @@unique([stockId, startDate, rank])
+  @@unique([stockId, tradeDate])
+  @@unique([stockId, tradeDate, rank])
 }
