@@ -18,6 +18,6 @@ async function bootstrap() {
   const SERVER_PORT = configService.get('PORT') ?? 8080;
   await app.listen(SERVER_PORT);
 
-  console.log(`SERVER IS UP ON ${SERVER_PORT}`);
+  console.log(`SERVER IS UP ON ${SERVER_PORT} PORT`);
 }
 bootstrap();
