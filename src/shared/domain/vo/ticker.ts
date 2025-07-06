@@ -1,12 +1,12 @@
 import { DomainException } from '@/shared/domain/error/domain.exception';
-import { STOCK_ERROR_CODE } from '@/stock/domain/error/stock-error';
+import { TICKER_ERROR_CODE } from '@/shared/domain/error/ticker.error';
 
 export class Ticker {
   private readonly _value: string;
   constructor(ticker: string) {
     if (!/^[A-Z]{1,6}$/.test(ticker)) {
       throw new DomainException(
-        STOCK_ERROR_CODE.INVALID_TICKER,
+        TICKER_ERROR_CODE.INVALID_TICKER_FORMAT,
         `잘못된 티커입니다. ticker: ${ticker}`,
       );
     }

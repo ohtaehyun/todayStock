@@ -1,5 +1,5 @@
 import { StockEntity } from '@/stock/domain/entity/stock.entity';
-import { Ticker } from '@/stock/domain/vo/ticker';
+import { Ticker } from '@/shared/domain/vo/ticker';
 
 export const IStockRepository = Symbol('IStockRepository');
 

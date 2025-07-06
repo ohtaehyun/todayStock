@@ -1,4 +1,4 @@
-import { Ticker } from '@/stock/domain/vo/ticker';
+import { Ticker } from '@/shared/domain/vo/ticker';
 
 export class StockEntity {
   constructor(
