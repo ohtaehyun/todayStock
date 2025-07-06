@@ -6,9 +6,17 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { YahooFinanceModule } from './yahoo-finance/yahoo-finance.module';
 import { TopStockModule } from './top-stock/top-stock.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PrismaModule, StockModule, YahooFinanceModule, TopStockModule],
+  imports: [
+    ConfigModule.forRoot(),
+    ScheduleModule.forRoot(),
+    PrismaModule,
+    StockModule,
+    YahooFinanceModule,
+    TopStockModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
