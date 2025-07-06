@@ -1,7 +1,7 @@
 import { PrismaService } from '@/prisma/prisma.service';
 import { StockEntity } from '@/stock/domain/entity/stock.entity';
 import { IStockRepository } from '@/stock/domain/repository/stock.repository';
-import { Ticker } from '@/stock/domain/vo/ticker';
+import { Ticker } from '@/shared/domain/vo/ticker';
 import { Injectable } from '@nestjs/common';
 import { Stock } from '@prisma/client';
 
