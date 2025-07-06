@@ -4,7 +4,7 @@ import { IsNotEmpty, IsString, Length } from 'class-validator';
 export class CreateStockRequest {
   @IsString()
   @IsNotEmpty()
-  @Length(1, 5)
+  @Length(1, 6)
   ticker: string;
 
   toCommand(): CreateStockCommand {
