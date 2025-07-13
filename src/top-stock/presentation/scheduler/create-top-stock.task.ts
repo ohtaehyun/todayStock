@@ -8,6 +8,6 @@ export class CreateTopStockTask {
 
   @Cron('* * * * * *')
   async handleCron() {
-    console.log('?');
+    // console.log('?');
   }
 }
