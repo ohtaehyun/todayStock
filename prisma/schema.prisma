@@ -13,6 +13,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum FearGreedRating {
+  EXTREME_FEAR
+  FEAR
+  NEUTRAL
+  GREED
+  EXTREME_GREED
+}
+
 model Stock {
   id  Int @default(autoincrement()) @id
   ticker String @unique
@@ -24,13 +32,28 @@ model Stock {
 model TopStock {
   id Int @default(autoincrement()) @id
   stockId Int
-  startDate DateTime
-  endDate DateTime
+  tradeDate DateTime
   rank Int
   marketCap BigInt
+  startPrice Decimal
+  closePrice Decimal
   createdAt DateTime @default(now())
 
   stock Stock @relation(fields: [stockId], references: [id])
-  @@unique([stockId, startDate])
-  @@unique([stockId, startDate, rank])
+  @@unique([stockId, tradeDate])
+  @@unique([stockId, tradeDate, rank])
+} 
+
+model FearAndGreedIndex {
+  id Int @default(autoincrement()) @id
+  rating FearGreedRating
+  score Decimal
+  marketMomentum Decimal
+  stockPriceStrength Decimal
+  stockPriceBreadth Decimal
+  putCallOptions Decimal
+  marketVolatility Decimal
+  junkBondDemand Decimal
+  safeHavenDemand Decimal
+  createdAt DateTime @default(now()) @unique
 }
