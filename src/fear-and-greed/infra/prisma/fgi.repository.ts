@@ -2,6 +2,7 @@ import { FearAndGreedIndexEntity } from '@/fear-and-greed/domain/entity/fgi.enti
 import { FearAndGreedIndexMapper } from '@/fear-and-greed/domain/mapper/fgi.mapper';
 import { IFearAndGreedRepository } from '@/fear-and-greed/domain/repository/fgi.repository';
 import { PrismaService } from '@/prisma/prisma.service';
+import { EntityNotFoundError } from '@/shared/infra/error/entity-not-found.error';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -11,9 +12,15 @@ export class FearAndGreedPrismaRepository implements IFearAndGreedRepository {
   async findOneOrThrowByCreatedAt(
     createdAt: Date,
   ): Promise<FearAndGreedIndexEntity> {
-    const fgi = await this.prisma.fearAndGreedIndex.findUniqueOrThrow({
+    const fgi = await this.prisma.fearAndGreedIndex.findUnique({
       where: { createdAt },
     });
+
+    if (!fgi)
+      throw new EntityNotFoundError(
+        'FearAndGreedIndex',
+        createdAt.toISOString(),
+      );
 
     return FearAndGreedIndexMapper.fromPrismaToEntity(fgi);
   }
